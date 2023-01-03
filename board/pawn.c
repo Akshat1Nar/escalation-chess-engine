@@ -1,6 +1,5 @@
 #include "headers/definitions.h"
 #include "headers/pawn.h"
-#include "headers/bitboard.h"
 
 u64 get_pawn_attack_mask(int square, int side) {
 	

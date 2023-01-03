@@ -33,3 +33,21 @@ void initialise_knight_lookup_table() {
 		// get knight attack mask for square i
 		knight_attacks[i] = get_knight_attack_mask(i);	
 }
+
+u64 knight_quiet_moves(int square) {
+
+	// knight's possible moves & empty squares
+	return (knight_attacks[square] & (~ chessboards[whiteblack]) );
+}
+
+u64 knight_attack_moves(int square, int side) {
+	
+	// knight's possible moves & opponent pieces
+	return (knight_attacks[square] & (chessboards[!side]));
+}
+
+u64 get_knight_moves(int square, int side) {
+
+	// union of quiet moves and attack moves
+	return (knight_quiet_moves(square) | knight_attack_moves(square, side) );
+}

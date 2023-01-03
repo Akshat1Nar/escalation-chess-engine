@@ -82,5 +82,7 @@ int main() {
 	initialise_rook_lookup_table();
 	initialise_king_lookup_table();
 
+	print_bitboard (get_knight_moves(e3, white));
+
 	return 0;
 }
