@@ -1,27 +1,13 @@
-#ifndef DEFINITIONS_H
-#define DEFINITIONS_H
-
-#include <stdio.h>
-#include <stdint.h>
-
-#define u64 unsigned long long
-
-// some bit operations
-#define get_bit(bitboard, index) (bitboard & (1ULL << index))
-#define set_bit(bitboard, index) (bitboard |= (1ULL << index))
-#define unset_bit(bitboard, index) (bitboard &= ~(1ULL << index))
+#include "headers/definitions.h"
 
 // color of pieces
-// extern enum colors;
-enum {white, black, whiteblack};
+// enum colors{white, black, whiteblack};
 
 // pieces
-// extern enum pieces;
-enum {e, p, r, n, b, q, k, P, R, N, B, Q, K, o};
+// enum pieces{e, p, r, n, b, q, k, P, R, N, B, Q, K, o};
 
 // squares
-// extern enum square_names;
-enum {
+/* enum square_names{
 	a8, b8, c8, d8, e8, f8, g8, h8,
 	a7, b7, c7, d7, e7, f7, g7, h7,
 	a6, b6, c6, d6, e6, f6, g6, h6,
@@ -30,16 +16,16 @@ enum {
 	a3, b3, c3, d3, e3, f3, g3, h3,
 	a2, b2, c2, d2, e2, f2, g2, h2,
 	a1, b1, c1, d1, e1, f1, g1, h1,
-};
+}; */
 
 // Ascii for given enums
-extern char ascii[14];
+char ascii[14] = {'e', 'p', 'r', 'n', 'b', 'q', 'k', 'P', 'R', 'N', 'B', 'Q', 'K', 'o'};
 
 // Unicode for given enums
-extern char *unicode[14];
+char *unicode[14];
 
 // boards, black pieces, white pieces, and a complete board
-extern u64 chessboards[];
+u64 chessboards[] = { 0ULL, 0ULL, 0ULL };
 
 /*
 --------------------------------------------------------------------------------
@@ -55,11 +41,11 @@ Pawn Lookup tables
 offsets of bit = {9, 7}
 
 */
-extern u64 knight_attacks[64];  // array for knight attacks for all positions
-extern u64 pawn_attacks[2][64]; // array for pawn attacks for all positions 
-extern u64 bishop_attacks[64];  // array for bishop attacks for all positions
-extern u64 rook_attacks[64];	 // array for rook attacks for all positions
-extern u64 king_attacks[64];	 // array for king attacks for all positions
+u64 knight_attacks[64];  // array for knight attacks for all positions
+u64 pawn_attacks[2][64]; // array for pawn attacks for all positions 
+u64 bishop_attacks[64];  // array for bishop attacks for all positions
+u64 rook_attacks[64];	 // array for rook attacks for all positions
+u64 king_attacks[64];	 // array for king attacks for all positions
 
 /*
 BLACK PIECES BITMASKS
@@ -262,7 +248,22 @@ White King
 
 */
 // 64 bit numbers to contain position of pieces
-extern u64 bitboards[14];
+u64 bitboards[] = {
+	0ULL,                     // empty squares
+	65280ULL,                 // black pawns
+	129ULL,			  // black rooks
+	66ULL,			  // black knights
+	36ULL,			  // black bishops
+	8ULL,			  // black queen
+	16ULL,			  // black king
+	71776119061217280ULL,     // white pawns
+	9295429630892703744ULL,   // white rooks
+	4755801206503243776ULL,   // white knights
+	2594073385365405696ULL,   // white bishops
+	576460752303423488ULL,	  // white queen
+	1152921504606846976ULL,	  // white king
+	0ULL                      // invalid square
+};
 
 
 /*
@@ -283,7 +284,7 @@ Not A file
       bitboard: 18374403900871474942
 
 */
-extern u64 not_a_file; 
+u64 not_a_file = 18374403900871474942ULL; 
 
 /*
 
@@ -303,7 +304,7 @@ Not H file
       bitboard: 9187201950435737471
 
 */
-extern u64 not_h_file;
+u64 not_h_file = 9187201950435737471ULL;
 
 /*
 
@@ -323,7 +324,7 @@ Not AB file
       bitboard: 18229723555195321596
 
 */
-extern u64 not_ab_file;
+u64 not_ab_file = 18229723555195321596ULL;
 
 /*
 
@@ -343,7 +344,7 @@ Not HG file
       bitboard: 4557430888798830399
 
 */
-extern u64 not_hg_file;
+u64 not_hg_file = 4557430888798830399ULL;
 
 /*
 Second rank
@@ -360,7 +361,7 @@ Second rank
 
       bitboard: 71776119061217280
 */
-extern u64 second_rank;
+u64 second_rank = 71776119061217280ULL;
 
 /*
 Seventh Rank
@@ -377,6 +378,4 @@ Seventh Rank
 
       bitboard: 65280
 */
-extern u64 seventh_rank;
-
-#endif
+u64 seventh_rank = 65280ULL;
